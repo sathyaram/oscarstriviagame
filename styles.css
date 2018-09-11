@@ -32,6 +32,10 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
+
+a {
+    text-decoration: none;
+}
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
@@ -40,6 +44,12 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /*----------*/
@@ -54,7 +64,6 @@ body {
 }
 
 header {
-    line-height:45px;
     width:100%;
     letter-spacing: 1px;
     height:50px;
@@ -67,18 +76,31 @@ h1 {
     color:#e0c957;
     text-transform: uppercase;
     text-align:center;
+    padding: 14px 0 8px;
     
 }
 
 nav {
-    
+    text-align:center;
 }
 
+nav ul li {
+    background:#e0c957;
+    padding:5px 10px;
+    color:white;
+    font-family:"Helvetica";
+    display:inline-block;
+    font-size:14px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    border-bottom: 2px solid white;
+}
 
 main {
     box-shadow: 0 -1px 20px 0px #999;
     width:80%;
     height:80vh;
+    padding:50px;
     border-top-left-radius: 10px;
     border-top-right-radius:10px;
     position: absolute;;
@@ -87,4 +109,40 @@ main {
     left:50%;
     transform:translateX(-50%);
     background:#fff;
+}
+
+h2 {
+    text-align:center;
+    font-size:48px;
+    text-transform:uppercase;
+}
+
+h2 span {
+    font-size:22px;
+}
+
+p {
+    padding-top:30px;
+    line-height:120%;
+    max-width:70%;
+    margin:0 auto;
+    text-align:center;
+}
+
+h3 {
+    max-width:50%;
+    margin:15px auto;
+}
+
+.quiz-type-container {
+    text-align:center;
+}
+
+a {
+    display:inline-block;
+    background:gold;
+    padding:5px 10px;
+    color:white;
+    font-size:24px;
+
 }

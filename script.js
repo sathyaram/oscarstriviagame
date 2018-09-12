@@ -35,22 +35,22 @@ const questions2018 = [
     ["Call Me By Your Name", "Darkest Hour",  "Dunkirk", "Get Out", "Lady Bird", "Phantom Thread", "The Post", "The Shape of Water", "Three Billboards Outside Ebbing, Missouri"],
     "The Shape Of Water"),
     new Question('Which actor won Best Actor?',
-     ["Timothee Chalamet", "Daniel Day-Lewis", "Daniel Kaluuya", "Gary Oldman", "Denzel Washington"], 
+     ["Timothee Chalamet - Call Me By Your Name", "Daniel Day-Lewis - Phantom Thread", "Daniel Kaluuya - Get Out", "Gary Oldman - Darkest Hour", "Denzel Washington - Roman J. Israel, Esq."], 
      "Gary Oldman"),
     new Question('Which actress won Best Actress?',
-     ["Sally Hawkins", "Frances McDormand", "Margot Robbie", "Saoirse Ronan", "Meryl Steep"],
+     ["Sally Hawkins - The Shape of Water", "Frances McDormand - Three Billboards outside Ebbing, Missouri", "Margot Robbie - I, Tonya", "Saoirse Ronan - Lady Bird", "Meryl Steep - The Post"],
       "Frances McDormand"),
     new Question('Which actor won Best Supporting Actor?',
-    ["Willem Dafoe", "Woody Harrelson","Richard Jenkins", "Christopher Plummer", "Sam Rockwell"],
+    ["Willem Dafoe - The Florida Project", "Woody Harrelson - Three Billboards outside Ebbing, Missouri", "Richard Jenkins - The Shape of Water", "Christopher Plummer - All the Money in the World", "Sam Rockwell - Three Billboards outside Ebbing, Missouri"],
     "Sam Rockwell"),
     new Question('Which actress won Best Supporting Actress?',
-    ["Mary J. Blige", "Allison Janney", "Lesley Manville", "Laurie Metcalf", "Octavia Spencer"],
+    ["Mary J. Blige - Mudbound", "Allison Janney - I, Tonya", "Lesley Manville - Phantom Thread", "Laurie Metcalf - Lady Bird", "Octavia Spencer - The Shape of Water"],
     "Allison Janney"),
     new Question('Which movie won Best Animated Feature Film?',
     ["The Boss Baby", "The Breadwinner", "Coco", "Ferdinand", "Loving Vincent"],
     "Coco"),
     new Question('Which director won Best Director?',
-    ["Christopher Nolan", "Jordan Peele", "Greta Gerwig", "Paul Thomas Anderson", "Guillermo del Toro"],
+    ["Christopher Nolan - Dunkirk", "Jordan Peele - Get Out", "Greta Gerwig - Lady Bird", "Paul Thomas Anderson - Phantom THread", "Guillermo del Toro - The Shape of Water"],
     "Guillermo del Toro"),
     new Question("Which movie won Best Original Score (Music)?",
     ["Dunkirk", "Phantom Thread", "The Shape of Water", "Star Wars: The Last Jedi", "Three Billboards outside Ebbing, Missouri"],
@@ -66,16 +66,34 @@ const questions2018 = [
 const main = document.querySelector("main");
 const fullQuizButton = document.querySelector("#full-quiz");
 const nextButton = document.querySelector(".next-btn");
+const answers = document.querySelector(".answers")
 let currentQuiz = undefined;
 
 function displayNextQuestion() {
+    // create a ul
+    // write a loop that loops through answers
+    // for each answer, make an li,
+    // insert answer text into li
+    // insert li into ul
+
+    // at the end of loop, outside loop, insert full ul into class of answers DIV
     const currentQuestion = currentQuiz.getNextQuestion();
     document.querySelector(".question").textContent = currentQuestion.questionString;
-    // Loop through currentQuestions answer choices
-    document.querySelector(".answers").textContent = currentQuestion.answerChoices;
+    let answersList = document.createElement("ul");
+    
+    for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
+        let answersItem = document.createElement("li");
+        answersItem.textContent = currentQuestion.answerChoices[i];
+        answersList.innerHTML = answersItem;
+    }
+    answers.appendChild(answersList);
+    
+    //document.querySelector(".answers").textContent = currentQuestion.answerChoices;
     document.querySelector(".welcome").style.display = "none";
     document.querySelector(".question-container").style.display = "block";
 };
+
+
 
 fullQuizButton.addEventListener('click',function(e) {
     e.preventDefault();

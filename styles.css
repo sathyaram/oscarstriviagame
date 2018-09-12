@@ -148,3 +148,7 @@ a {
     border-radius:8px;
 
 }
+
+.question-container {
+    display:none;
+}

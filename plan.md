@@ -56,10 +56,13 @@ Plan of Action
         - Question
             -Question
             -Answer Choices
+                -Image
+                -Text
             -Selected Answer
             -Actual Answer
     - Full Quiz
     - Score
+    - Current Questions / Total Questions
     - Result Summary
 
 // User Stories
@@ -67,7 +70,7 @@ Plan of Action
 * 1) User Sees Two Buttons
 * 2) User Picks one of two Buttons
 * 3) Quiz Initializes
-  3a) User reads first question
+* 3a) User reads first question
 * 4) User sees answer selection
 * 5) User chooses answer
 * 6) User sees result of question

@@ -84,6 +84,9 @@ h1 {
     text-align:center;
     padding: 14px 0 8px;
     font-family:"Playfair Display", sans-serif;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: -webkit-linear-gradient(top,#efd100 0,#e2a233 38%,#f0c328 60%,#fff1a3 86%,#ffe13e 100%);
 }
 
 nav {
@@ -125,6 +128,10 @@ h2 {
     text-transform:uppercase;
     font-family:"Playfair Display", sans-serif;
     position:relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: -webkit-linear-gradient(top,#efd100 0,#e2a233 35%,#f0c328 40%,#fff1a3 86%,#ffe13e 100%);
+    text-shadow: 0px 0px 10px rgba(240,202,87,0.3);
 }
    
 h2 span {
@@ -186,9 +193,9 @@ a {
 
 a:hover {
     background:#e6cc4c;
-    -webkit-box-shadow: 0px 8px 18px 0px rgba(240,202,87,1);
-    -moz-box-shadow: 0px 8px 18px 0px rgba(240,202,87,1);
-    box-shadow: 0px 8px 18px 0px rgba(240,202,87,1);
+    -webkit-box-shadow: 0px 7px 18px 0px rgba(240,202,87,1);
+    -moz-box-shadow: 0px 7px 18px 0px rgba(240,202,87,1);
+    box-shadow: 0px 7px 18px 0px rgba(240,202,87,1);
 }
 
 .question-container {

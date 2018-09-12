@@ -70,22 +70,17 @@ const answers = document.querySelector(".answers")
 let currentQuiz = undefined;
 
 function displayNextQuestion() {
-    // create a ul
-    // write a loop that loops through answers
-    // for each answer, make an li,
-    // insert answer text into li
-    // insert li into ul
-
-    // at the end of loop, outside loop, insert full ul into class of answers DIV
     const currentQuestion = currentQuiz.getNextQuestion();
     document.querySelector(".question").textContent = currentQuestion.questionString;
     let answersList = document.createElement("ul");
     
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
+        currentQuestion.answerChoices[i].replace(" ", "").replace(",","").replace(":","");
         answersItem.textContent = currentQuestion.answerChoices[i];
-        answersList.innerHTML = answersItem;
+        answersList.appendChild(answersItem);
     }
+    answers.innerHTML = ''
     answers.appendChild(answersList);
     
     //document.querySelector(".answers").textContent = currentQuestion.answerChoices;

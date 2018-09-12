@@ -1,3 +1,20 @@
+class Question {
+    constructor(questionString,answerChoices,actualAnswer) {
+        this.questionString = questionString;
+        this.answerChoices = answerChoices;
+        this.actualAnswer = actualAnswer;
+    }
+
+    isAnswerCorrect(selectedAnswer) {
+        if (selectedAnswer === this.actualAnswer) {
+            return true;
+        } else return false;
+    }
+}
+
+
+
+
 // Questions, Nominees and Answers
 let quiz2018 = [
     // Best Picture

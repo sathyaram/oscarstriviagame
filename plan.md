@@ -1,6 +1,11 @@
+To Do
+* // Replace Text Area with Q&A
+
+
+
 Plan of Action
 1__
-* 1. Create the (Un)abridged Buttons
+* 1. Create the (Un)abridged Buttons 
 * 2. Make Them Log something when clicked
 2__
 * 1. How to store all Questions + Answers
@@ -45,6 +50,30 @@ Plan of Action
 - Area where Score is kept throughout Questions
 - Depending on Right/Wrong, Score is updated
 
+// Design
+- Quiz
+    - Abbreivated Quiz
+        - Question
+            -Question
+            -Answer Choices
+            -Selected Answer
+            -Actual Answer
+    - Full Quiz
+    - Score
+    - Result Summary
+
+// User Stories
+* 0) Show Welcome Text
+* 1) User Sees Two Buttons
+* 2) User Picks one of two Buttons
+* 3) User reads first question
+* 4) User sees answer selection
+* 5) User chooses answer
+* 6) User sees result of question
+* 7) User sees score update
+* 8) User is able to click next (to next question)
+* 9) After all Questions are Answered
+* 10) User sees results of Quiz 
 
 // Store Questions + Answer
 

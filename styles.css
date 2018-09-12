@@ -140,9 +140,11 @@ h3 {
 
 a {
     display:inline-block;
-    background:gold;
-    padding:5px 10px;
+    background:rgb(255, 187, 0);
+    padding:15px;
     color:white;
-    font-size:24px;
+    font-family:"Helvetica";
+    font-size:20px;
+    border-radius:8px;
 
 }

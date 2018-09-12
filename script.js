@@ -31,12 +31,36 @@ class Quiz {
 }
 
 const questions2018 = [
+    new Question('Which movie won Best Picture?',
+    ["Call Me By Your Name", "Darkest Hour",  "Dunkirk", "Get Out", "Lady Bird", "Phantom Thread", "The Post", "The Shape of Water", "Three Billboards Outside Ebbing, Missouri"],
+    "The Shape Of Water"),
     new Question('Which actor won Best Actor?',
      ["Timothee Chalamet", "Daniel Day-Lewis", "Daniel Kaluuya", "Gary Oldman", "Denzel Washington"], 
      "Gary Oldman"),
     new Question('Which actress won Best Actress?',
      ["Sally Hawkins", "Frances McDormand", "Margot Robbie", "Saoirse Ronan", "Meryl Steep"],
-      "Frances McDormand")
+      "Frances McDormand"),
+    new Question('Which actor won Best Supporting Actor?',
+    ["Willem Dafoe", "Woody Harrelson","Richard Jenkins", "Christopher Plummer", "Sam Rockwell"],
+    "Sam Rockwell"),
+    new Question('Which actress won Best Supporting Actress?',
+    ["Mary J. Blige", "Allison Janney", "Lesley Manville", "Laurie Metcalf", "Octavia Spencer"],
+    "Allison Janney"),
+    new Question('Which movie won Best Animated Feature Film?',
+    ["The Boss Baby", "The Breadwinner", "Coco", "Ferdinand", "Loving Vincent"],
+    "Coco"),
+    new Question('Which director won Best Director?',
+    ["Christopher Nolan", "Jordan Peele", "Greta Gerwig", "Paul Thomas Anderson", "Guillermo del Toro"],
+    "Guillermo del Toro"),
+    new Question("Which movie won Best Original Score (Music)?",
+    ["Dunkirk", "Phantom Thread", "The Shape of Water", "Star Wars: The Last Jedi", "Three Billboards outside Ebbing, Missouri"],
+    "The Shape of Water"),
+    new Question("Which movie won Best Adapted Screenplay?",
+    ["Call Me By Your Name", "The Disaster Artist", "Logan", "Molly's Game", "Mudbound"],
+    "Call Me By Your Name"),
+    new Question("Which movie won Best Original Screenplay?",
+    ["The Big Sick", "Get Out", "Lady Bird", "The Shape of Water", "Three Billboards outside Ebbing, Missouri"],
+    "Get Out")
 ];
 
 const main = document.querySelector("main");

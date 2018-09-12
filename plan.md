@@ -51,7 +51,7 @@ Plan of Action
 - Depending on Right/Wrong, Score is updated
 
 // Design
-- Quiz
+- Quiz: A list of questions
     - Abbreivated Quiz
         - Question
             -Question
@@ -66,7 +66,8 @@ Plan of Action
 * 0) Show Welcome Text
 * 1) User Sees Two Buttons
 * 2) User Picks one of two Buttons
-* 3) User reads first question
+* 3) Quiz Initializes
+  3a) User reads first question
 * 4) User sees answer selection
 * 5) User chooses answer
 * 6) User sees result of question

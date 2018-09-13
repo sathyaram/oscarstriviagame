@@ -130,15 +130,19 @@ function displayCurrentQuestion() {
     
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
-        // let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","");
-        // let searchTerm = '-';
-        // let indexOfDash = replacedItem.indexOf(searchTerm);
-        // let imageName = paragraph.substring(0,indexOfDash);
-        // let imageURL = imageName + ".jpg";
-        // let image = document.createElement("img");
-        // let answerImage = image.setAttribute(src,imageURL);
-        // console.log(replacedItem);
+        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","").toLowerCase();
+        let indexOfDash = replacedItem.indexOf('-')
+        if (indexOfDash >= 0) {
+            replacedItem = replacedItem.substring(0,indexOfDash);   
+        }
+
+        replacedItem = `images/${replacedItem}.jpg`
+        // console.log(indexOfDash, replacedItem);
+
+        let image = document.createElement("img");
+        image.setAttribute("src",replacedItem);
         answersItem.textContent = currentQuestion.answerChoices[i];
+        answersItem.appendChild(image)
         answersList.appendChild(answersItem);
         //answersItem.appendChild(answerImage);
     }
@@ -161,6 +165,7 @@ shortQuizButton.addEventListener('click',function(e) {
     currentQuiz = new Quiz(questions2018.slice(0,10));
     displayScore();
     displayCurrentQuestion();
+    score.style.display = "block";
 });
 
 fullQuizButton.addEventListener('click',function(e) {
@@ -168,6 +173,7 @@ fullQuizButton.addEventListener('click',function(e) {
     currentQuiz = new Quiz(questions2018);
     displayScore();
     displayCurrentQuestion();
+    score.style.display = "block";
 });
 
 nextButton.addEventListener('click',function(e) {
@@ -179,6 +185,8 @@ nextButton.addEventListener('click',function(e) {
     }
     displayCurrentQuestion();
     result.textContent = "";
+    result.style.display = "none";
+    answers.style = "pointer-events:auto;"
 });
 
 answers.addEventListener('click', function(e) {
@@ -189,7 +197,10 @@ answers.addEventListener('click', function(e) {
         currentQuiz.incrementScore();
         displayScore();
         result.textContent = "Well done! That's correct."
+        result.style.display = "block";
     } else { 
         result.textContent = `Incorrect, the actual answer was "${currentQuiz.getCurrentQuestion().actualAnswer}"`;
+        result.style.display = "block";
     }
+    answers.style = "pointer-events:none;"
 });

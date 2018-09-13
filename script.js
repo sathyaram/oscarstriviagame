@@ -59,7 +59,7 @@ const questions2018 = [
     "Coco"),
     new Question('Which director won Best Director?',
     ["Dunkirk - Christopher Nolan", "Get Out - Jordan Peele", "Lady Bird - Greta Gerwig", "Phantom Thread - Paul Thomas Anderson", "The Shape Of Water - Guillermo Del Toro"],
-    "Guillermo Del Toro - The Shape Of Water"),
+    "The Shape Of Water - Guillermo Del Toro"),
     new Question("Which movie won Best Adapted Screenplay?",
     ["Call Me By Your Name", "The Disaster Artist", "Logan", "Molly's Game", "Mudbound"],
     "Call Me By Your Name"),
@@ -82,7 +82,7 @@ const questions2018 = [
     ["Darkest Hour", "Victoria & Abdul", "Wonder"],
     "Darkest Hour"),
     new Question("Which movie won Best Production Design?",
-    ["Beauty And The Beauty", "Blade Runner 2049", "Darkest Hour", "Dunkirk", "The Shape Of Water"],
+    ["Beauty And The Beast", "Blade Runner 2049", "Darkest Hour", "Dunkirk", "The Shape Of Water"],
     "The Shape Of Water"),
     new Question("Which movie won Best Foreign Language Film?",
     ["A Fantastic Woman", "The Insult", "Loveless", "On Body and Soul", "The Square"],
@@ -113,24 +113,25 @@ const questions2018 = [
     "The Silent Child")
 ];
 
-const main = document.querySelector("main");
+const questionNumber = document.querySelector(".question-number");
 const shortQuizButton = document.querySelector("#short-quiz");
 const fullQuizButton = document.querySelector("#full-quiz");
 const nextButton = document.querySelector(".next-btn");
 const answers = document.querySelector(".answers");
+const overlay = document.querySelector(".overlay");
 const result = document.querySelector("#result");
 const score = document.querySelector('#score');
+const main = document.querySelector("main");
 let currentQuiz = undefined;
 
 function displayCurrentQuestion() {
     const currentQuestion = currentQuiz.getCurrentQuestion();
-
     document.querySelector(".question").textContent = currentQuestion.questionString;
+    questionNumber.innerHTML = `Question ${currentQuiz.questionNum + 1}`;
     let answersList = document.createElement("ul");
-    
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
-        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","").replace(".","").replace("'","").toLowerCase();
+        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","").replace(".","").replace("'","").replace("/","").toLowerCase();
         let indexOfDash = replacedItem.indexOf('-')
         if (indexOfDash >= 0) {
             replacedItem = replacedItem.substring(0,indexOfDash);   
@@ -179,11 +180,14 @@ nextButton.addEventListener('click',function(e) {
     const finished = currentQuiz.isQuizFinished();
     console.log(finished);
     if (finished) {
-        main.innerHTML = "You're done!";
+        main.innerHTML = `<h2>You're done!</h2> <div class="final-score">Your Final Score was: 
+        <br/> <span>${currentQuiz.score}/${currentQuiz.questions.length}</span></div>
+        <div class="quiz-type-container"><a class="quiz-type-btn" href="index.html" >Dare to Try Again?</a></div>`;
+        
     }
     displayCurrentQuestion();
     result.textContent = "";
-    result.style.display = "none";
+    overlay.style.display = "none";
     answers.style = "pointer-events:auto;"
 });
 
@@ -195,10 +199,10 @@ answers.addEventListener('click', function(e) {
         currentQuiz.incrementScore();
         displayScore();
         result.textContent = "Well done! That's correct."
-        result.style.display = "block";
+        overlay.style.display = "block";
     } else { 
-        result.textContent = `Incorrect, the actual answer was "${currentQuiz.getCurrentQuestion().actualAnswer}"`;
-        result.style.display = "block";
+        result.innerHTML = `Incorrect, the actual answer was <br/>"${currentQuiz.getCurrentQuestion().actualAnswer}"`;
+        overlay.style.display = "block";
     }
     answers.style = "pointer-events:none;"
 });

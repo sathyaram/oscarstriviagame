@@ -199,10 +199,10 @@ answers.addEventListener('click', function(e) {
         currentQuiz.incrementScore();
         displayScore();
         result.textContent = "Well done! That's correct."
-        overlay.style.display = "block";
+        overlay.style.display = "flex";
     } else { 
         result.innerHTML = `Incorrect, the actual answer was <br/>"${currentQuiz.getCurrentQuestion().actualAnswer}"`;
-        overlay.style.display = "block";
+        overlay.style.display = "flex";
     }
     answers.style = "pointer-events:none;"
 });

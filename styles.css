@@ -57,14 +57,13 @@ table {
 
 body {
     width:100%;
-    height:100vh;
     font-family: 'Varela Round', sans-serif;
     /* Sourcing Background Image from a Forbes Article */
     background: linear-gradient(
         rgba(224,201,87,0.5),
         rgba(224,201,87,0)
         ),
-    url(https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Feustaciahuen%2Ffiles%2F2018%2F03%2FMany-oscars-1200x795.jpg) no-repeat 100% 100% / cover;
+    url(https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Feustaciahuen%2Ffiles%2F2018%2F03%2FMany-oscars-1200x795.jpg) no-repeat 100% 100% / cover fixed;
 
     
 }
@@ -107,19 +106,16 @@ nav ul li {
 
 main {
     box-shadow: 0 -1px 50px rgba(0,0,0,0.3);
-    width:70%;
-    height:82vh;
-    padding:3% 5%;
-    border-top:8px solid #e0c957;
-    border-top-left-radius: 5%;
-    border-top-right-radius:5%;
-    position: absolute;;
-    margin:0 auto;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    background:#fff;
-    
+    width: 70%;
+    height: auto;
+    padding: 3% 5%;
+    border-top: 10px solid #e0c957;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-radius:25px;
+    margin: 75px auto 0;
+    background: #fff;
+    position:relative;
 }
 
 h2 {
@@ -223,9 +219,10 @@ a.quiz-type-btn:hover {
 }
 
 .answers ul li {
-    flex: 1 0 25%;
+    flex: 0 0 23%;
     margin: 0 5px;
     padding:20px;
+    font-size:18px;
     cursor:pointer;
     transition: all 300ms ease;
     /* border-left:5px solid white;
@@ -237,6 +234,7 @@ a.quiz-type-btn:hover {
     /* border:5px solid #e0c957; */
     background:#e0c957;
     color:white;
+    box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
 }
 
 #result {
@@ -256,15 +254,32 @@ a.quiz-type-btn:hover {
 
 #score {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -39px;
+    top: -46px;
     background: white;
-    padding: 10px 10px 1px;
-    border-top: 4px solid #e0c957;
-    border-left: 4px solid #e0c957;
-    border-right: 4px solid #e0c957;
+    padding: 4px 10px 1px;
+    border-top: 6px solid #e0c957;
+    border-left: 6px solid #e0c957;
+    border-right: 6px solid #e0c957;
     display:none;
+}
+
+div#score:before {
+    content: "Score";
+    display: block;
+    font-size: 12px;
+    padding-bottom: 3px;
+    color:#e0b057;
+}
+
+img {
+    width:100%;
+    height:auto;
+    pointer-events: none;
+    margin-top:10px;
 }

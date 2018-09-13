@@ -43,10 +43,10 @@ const questions2018 = [
     ["Call Me By Your Name", "Darkest Hour",  "Dunkirk", "Get Out", "Lady Bird", "Phantom Thread", "The Post", "The Shape Of Water", "Three Billboards Outside Ebbing, Missouri"],
     "The Shape Of Water"),
     new Question('Which actor won Best Actor?',
-     ["Timothee Chalamet - Call Me By Your Name", "Daniel Day-Lewis - Phantom Thread", "Daniel Kaluuya - Get Out", "Gary Oldman - Darkest Hour", "Denzel Washington - Roman J. Israel, Esq."], 
+     ["Timothee Chalamet - Call Me By Your Name", "Daniel Day Lewis - Phantom Thread", "Daniel Kaluuya - Get Out", "Gary Oldman - Darkest Hour", "Denzel Washington - Roman J. Israel, Esq."], 
      "Gary Oldman - Darkest Hour"),
     new Question('Which actress won Best Actress?',
-     ["Sally Hawkins - The Shape Of Water", "Frances McDormand - Three Billboards Outside Ebbing, Missouri", "Margot Robbie - I, Tonya", "Saoirse Ronan - Lady Bird", "Meryl Steep - The Post"],
+     ["Sally Hawkins - The Shape Of Water", "Frances McDormand - Three Billboards Outside Ebbing, Missouri", "Margot Robbie - I, Tonya", "Saoirse Ronan - Lady Bird", "Meryl Streep - The Post"],
       "Frances McDormand - Three Billboards Outside Ebbing, Missouri"),
     new Question('Which actor won Best Supporting Actor?',
     ["Willem Dafoe - The Florida Project", "Woody Harrelson - Three Billboards Outside Ebbing, Missouri", "Richard Jenkins - The Shape Of Water", "Christopher Plummer - All The Money In The World", "Sam Rockwell - Three Billboards Outside Ebbing, Missouri"],
@@ -58,7 +58,7 @@ const questions2018 = [
     ["The Boss Baby", "The Breadwinner", "Coco", "Ferdinand", "Loving Vincent"],
     "Coco"),
     new Question('Which director won Best Director?',
-    ["Christopher Nolan - Dunkirk", "Jordan Peele - Get Out", "Greta Gerwig - Lady Bird", "Paul Thomas Anderson - Phantom Thread", "Guillermo Del Toro - The Shape Of Water"],
+    ["Dunkirk - Christopher Nolan", "Get Out - Jordan Peele", "Lady Bird - Greta Gerwig", "Phantom Thread - Paul Thomas Anderson", "The Shape Of Water - Guillermo Del Toro"],
     "Guillermo Del Toro - The Shape Of Water"),
     new Question("Which movie won Best Adapted Screenplay?",
     ["Call Me By Your Name", "The Disaster Artist", "Logan", "Molly's Game", "Mudbound"],
@@ -130,15 +130,13 @@ function displayCurrentQuestion() {
     
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
-        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","").toLowerCase();
+        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","").replace(".","").replace("'","").toLowerCase();
         let indexOfDash = replacedItem.indexOf('-')
         if (indexOfDash >= 0) {
             replacedItem = replacedItem.substring(0,indexOfDash);   
         }
-
         replacedItem = `images/${replacedItem}.jpg`
         // console.log(indexOfDash, replacedItem);
-
         let image = document.createElement("img");
         image.setAttribute("src",replacedItem);
         answersItem.textContent = currentQuestion.answerChoices[i];
@@ -190,7 +188,7 @@ nextButton.addEventListener('click',function(e) {
 });
 
 answers.addEventListener('click', function(e) {
-    console.log(e.target.textContent);
+    console.log(e.target);
     console.log(currentQuiz.getCurrentQuestion());
     let answerValidity = currentQuiz.getCurrentQuestion().isAnswerCorrect(e.target.textContent);
     if (answerValidity) {

@@ -23,20 +23,22 @@ class Quiz {
         this.score++;
     }
 
-    getNextQuestion() {
-        const currentQuestion = this.questions[this.questionNum];
+    getCurrentQuestion() {
+        return this.questions[this.questionNum];
+    }
+
+    moveToNextQuestion() {
         this.questionNum++;
-        return currentQuestion;
     }
 }
 
 const questions2018 = [
     new Question('Which movie won Best Picture?',
-    ["Call Me By Your Name", "Darkest Hour",  "Dunkirk", "Get Out", "Lady Bird", "Phantom Thread", "The Post", "The Shape of Water", "Three Billboards Outside Ebbing, Missouri"],
+    ["Call Me By Your Name", "Darkest Hour",  "Dunkirk", "Get Out", "Lady Bird", "Phantom Thread", "The Post", "The Shape Of Water", "Three Billboards Outside Ebbing, Missouri"],
     "The Shape Of Water"),
     new Question('Which actor won Best Actor?',
      ["Timothee Chalamet - Call Me By Your Name", "Daniel Day-Lewis - Phantom Thread", "Daniel Kaluuya - Get Out", "Gary Oldman - Darkest Hour", "Denzel Washington - Roman J. Israel, Esq."], 
-     "Gary Oldman"),
+     "Gary Oldman - Darkest Hour"),
     new Question('Which actress won Best Actress?',
      ["Sally Hawkins - The Shape of Water", "Frances McDormand - Three Billboards outside Ebbing, Missouri", "Margot Robbie - I, Tonya", "Saoirse Ronan - Lady Bird", "Meryl Steep - The Post"],
       "Frances McDormand"),
@@ -66,17 +68,22 @@ const questions2018 = [
 const main = document.querySelector("main");
 const fullQuizButton = document.querySelector("#full-quiz");
 const nextButton = document.querySelector(".next-btn");
-const answers = document.querySelector(".answers")
+const answers = document.querySelector(".answers");
+const result = document.querySelector("#result");
+const score = document.querySelector('#score');
 let currentQuiz = undefined;
 
-function displayNextQuestion() {
-    const currentQuestion = currentQuiz.getNextQuestion();
+
+
+function displayCurrentQuestion() {
+    const currentQuestion = currentQuiz.getCurrentQuestion();
+
     document.querySelector(".question").textContent = currentQuestion.questionString;
     let answersList = document.createElement("ul");
     
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
-        currentQuestion.answerChoices[i].replace(" ", "").replace(",","").replace(":","");
+        //currentQuestion.answerChoices[i].replace(" ", "").replace(",","").replace(":","");
         answersItem.textContent = currentQuestion.answerChoices[i];
         answersList.appendChild(answersItem);
     }
@@ -88,48 +95,35 @@ function displayNextQuestion() {
     document.querySelector(".question-container").style.display = "block";
 };
 
+function displayScore() {
+    score.textContent = `${currentQuiz.score}/${currentQuiz.questions.length}`;
+};
+
 
 
 fullQuizButton.addEventListener('click',function(e) {
     e.preventDefault();
     currentQuiz = new Quiz(questions2018);
-    displayNextQuestion();
+    displayScore();
+    displayCurrentQuestion();
 });
 
 nextButton.addEventListener('click',function(e) {
-    displayNextQuestion();
+    currentQuiz.moveToNextQuestion();
+    displayCurrentQuestion();
+    result.textContent = "";
 });
 
-// Questions, Nominees and Answers
-let quiz2018 = [
-    // Best Picture
-    { 
-    question: 'Which movie won Best Picture?', 
-    nominees: { one: "Call Me By Your Name", two: "Darkest Hour", three: "Dunkirk", four: "Get Out", five: "Lady Bird", six: "Phantom Thread", seven: "The Post", eight: "The Shape of Water", nine: "Three Billboards Outside Ebbing, Missouri"},
-    answer: "The Shape of Water"
-    },
-    // Best Actor
-    {
-    question: 'Which actor won Best Actor?',
-    nominees: { one: "Timothee Chalamet", two: "Daniel Day-Lewis", three: "Daniel Kaluuya", four: "Gary Oldman", five: "Denzel Washington"},
-    answer: "Gary Oldman"
-    },
-    // Best Actress
-    {
-    question: 'Which actress won Best Actress?',
-    nominees: { one: "Sally Hawkins", two: "Frances McDormand", three: "Margot Robbie", four: "Saoirse Ronan", five: "Meryl Steep"},
-    answer: "Frances McDormand"
-    },
-    // Best Director
-    {
-    question: 'Which director won Best Director?'
-    },
-    // Best Supporting Actor
-    {
 
-    },
-    // Best Supporting Actress
-    {
-
+answers.addEventListener('click', function(e) {
+    console.log(e.target.textContent);
+    console.log(currentQuiz.getCurrentQuestion());
+    let answerValidity = currentQuiz.getCurrentQuestion().isAnswerCorrect(e.target.textContent);
+    if (answerValidity) {
+        currentQuiz.incrementScore();
+        displayScore();
+        result.textContent = "Well done! That's correct."
+    } else { 
+        result.textContent = `Incorrect, the actual answer was "${currentQuiz.getCurrentQuestion().actualAnswer}"`;
     }
-];
+});

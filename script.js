@@ -30,6 +30,12 @@ class Quiz {
     moveToNextQuestion() {
         this.questionNum++;
     }
+
+    isQuizFinished() {
+        if (this.questionNum === this.questions.length) {
+            return true;
+        } else return false;
+    }
 }
 
 const questions2018 = [
@@ -66,14 +72,13 @@ const questions2018 = [
 ];
 
 const main = document.querySelector("main");
+const shortQuizButton = document.querySelector("#short-quiz");
 const fullQuizButton = document.querySelector("#full-quiz");
 const nextButton = document.querySelector(".next-btn");
 const answers = document.querySelector(".answers");
 const result = document.querySelector("#result");
 const score = document.querySelector('#score');
 let currentQuiz = undefined;
-
-
 
 function displayCurrentQuestion() {
     const currentQuestion = currentQuiz.getCurrentQuestion();
@@ -83,7 +88,12 @@ function displayCurrentQuestion() {
     
     for (let i = 0; i < currentQuestion.answerChoices.length; i++) {
         let answersItem = document.createElement("li");
-        //currentQuestion.answerChoices[i].replace(" ", "").replace(",","").replace(":","");
+        let replacedItem = currentQuestion.answerChoices[i].split(" ").join("").replace(",","").replace(":","");
+        let searchTerm = '-';
+        let indexOfDash = replacedItem.indexOf(searchTerm);
+        let imageName = paragraph.substring(0,indexOfDash);
+        console.log(bob);
+        console.log(replacedItem);
         answersItem.textContent = currentQuestion.answerChoices[i];
         answersList.appendChild(answersItem);
     }
@@ -101,6 +111,13 @@ function displayScore() {
 
 
 
+shortQuizButton.addEventListener('click',function(e) {
+    e.preventDefault();
+    currentQuiz = new Quiz(questions2018.slice(0,3));
+    displayScore();
+    displayCurrentQuestion();
+});
+
 fullQuizButton.addEventListener('click',function(e) {
     e.preventDefault();
     currentQuiz = new Quiz(questions2018);
@@ -110,10 +127,14 @@ fullQuizButton.addEventListener('click',function(e) {
 
 nextButton.addEventListener('click',function(e) {
     currentQuiz.moveToNextQuestion();
+    const finished = currentQuiz.isQuizFinished();
+    console.log(finished);
+    if (finished) {
+        main.innerHTML = "You're done!";
+    }
     displayCurrentQuestion();
     result.textContent = "";
 });
-
 
 answers.addEventListener('click', function(e) {
     console.log(e.target.textContent);

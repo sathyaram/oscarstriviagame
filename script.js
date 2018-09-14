@@ -125,6 +125,10 @@ const main = document.querySelector("main");
 let currentQuiz = undefined;
 let quizType = undefined;
 
+$(document).ready(function(){
+    $("main").fadeIn(700);
+});
+
 function displayCurrentQuestion() {
     const currentQuestion = currentQuiz.getCurrentQuestion();
     document.querySelector(".question").textContent = currentQuestion.questionString;
@@ -205,11 +209,13 @@ nextButton.addEventListener('click',function(e) {
             }
         } 
  
+    } else {
+        displayCurrentQuestion();
+        result.textContent = "";
+        $(".overlay").fadeOut(600);
     }
     
-    displayCurrentQuestion();
-    result.textContent = "";
-    $(".overlay").fadeOut(600);
+    
 });
 
 answers.addEventListener('click', function(e) {

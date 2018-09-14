@@ -261,9 +261,6 @@ a.quiz-type-btn:hover {
     top: 0;
     bottom:0;
     display:none;
-    align-content: center;
-    justify-content: center;
-    flex-direction:column;
 }
 
 #result {
@@ -314,7 +311,7 @@ img {
 .final-score {
     text-align: center;
     padding-top: 60px;
-    font-size: 22px;
+    font-size: 24px;
     padding-bottom:20px;
 }
 
@@ -325,6 +322,12 @@ img {
     background-image: -webkit-linear-gradient(top,#efd100 0,#e2a233 35%,#f0c328 40%,#fff1a3 86%,#e2a233 100%);
     font-family:"Playfair Display", sans-serif;
     font-size:42px;
+}
+
+.score-message {
+    text-align: center;
+    max-width: 250px;
+    margin: 0 auto;
 }
 
 /*-----Media Queries-----*/

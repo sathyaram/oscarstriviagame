@@ -123,6 +123,7 @@ const result = document.querySelector("#result");
 const score = document.querySelector('#score');
 const main = document.querySelector("main");
 let currentQuiz = undefined;
+let quizType = undefined;
 
 function displayCurrentQuestion() {
     const currentQuestion = currentQuiz.getCurrentQuestion();
@@ -147,58 +148,68 @@ function displayCurrentQuestion() {
     }
     answers.innerHTML = ''
     answers.appendChild(answersList);
-    
-    //document.querySelector(".answers").textContent = currentQuestion.answerChoices;
-    document.querySelector(".welcome").style.display = "none";
-    document.querySelector(".question-container").style.display = "block";
+
+    $(".welcome").fadeOut(500, () => {
+        $(".question-container").fadeIn();
+    });
 };
 
 function displayScore() {
     score.textContent = `${currentQuiz.score}/${currentQuiz.questions.length}`;
 };
 
-
-
 shortQuizButton.addEventListener('click',function(e) {
     e.preventDefault();
+    quizType = 10;
     currentQuiz = new Quiz(questions2018.slice(0,10));
     displayScore();
     displayCurrentQuestion();
-    score.style.display = "block";
+    $("#score").fadeIn(500);
 });
 
 fullQuizButton.addEventListener('click',function(e) {
     e.preventDefault();
+    quizType = 24;
     currentQuiz = new Quiz(questions2018);
     displayScore();
     displayCurrentQuestion();
-    score.style.display = "block";
+    $("#score").fadeIn(500);
 });
 
 nextButton.addEventListener('click',function(e) {
     currentQuiz.moveToNextQuestion();
     const finished = currentQuiz.isQuizFinished();
     if (finished) {
-        main.innerHTML = `<h2>You're done!</h2> <div class="final-score">Your Final Score was: 
-        <br/> <span>${currentQuiz.score}/${currentQuiz.questions.length}</span></div><div class="score-message"></div>
-        <div class="quiz-type-container"><a class="quiz-type-btn" href="index.html" >Dare to Try Again?</a></div>`;
-        
+        main.innerHTML = `<h2>You're done!</h2> <div class="final-score">Your Final Score was:<br/><span>${currentQuiz.score}/${currentQuiz.questions.length}</span></div><div class="score-message"></div><div class="quiz-type-container"><a class="quiz-type-btn" href="index.html" >Dare to Try Again?</a></div>`;
         const scoreMessage = document.querySelector(".score-message");
-        if (currentQuiz.score >= 20) {
-            scoreMessage.textContent = "Amazing job! You really know your stuff!";
-        } else if (currentQuiz.score >= 12 ) {
-            scoreMessage.textContent = "Not bad, might want to take it again to solidify your knowledge!";
-        } else if (currentQuiz.score >= 6) {
-            scoreMessage.textContent = "You might want to tune into the Oscars next time."
-        } else if (currentQuiz.score < 5) {
-            scoreMessage.textContent = "Don't tell anyone you took this quiz, friend."
-        }
+
+        if (quizType === 24) {
+            if (currentQuiz.score >= 20) {
+                scoreMessage.textContent = "Amazing job! You really know your stuff!";
+            } else if (currentQuiz.score >= 12 ) {
+                scoreMessage.textContent = "Not bad, might want to take it again to solidify your knowledge!";
+            } else if (currentQuiz.score >= 6) {
+                scoreMessage.textContent = "You might want to tune into the Oscars next time.";
+            } else if (currentQuiz.score < 5) {
+                scoreMessage.textContent = "Don't tell anyone you took this quiz, friend.";
+            }
+        } else if (quizType === 10) {
+            if (currentQuiz.score >= 9) {
+                scoreMessage.textContent = "Amazing job! You really know your stuff!";
+            } else if (currentQuiz.score >= 7) {
+                scoreMessage.textContent = "Not bad, might want to take it again to solidify your knowledge!";
+            } else if (currentQuiz.score >= 4) {
+                scoreMessage.textContent = "You might want to tune into the Oscars next time.";
+            } else if (currentQuiz.score >= 0) {
+                scoreMessage.textContent = "Don't tell anyone you took this quiz, friend.";
+            }
+        } 
+ 
     }
     
     displayCurrentQuestion();
     result.textContent = "";
-    overlay.style.display = "none";
-    answers.style = "pointer-events:auto;"
+    $(".overlay").fadeOut(600);
 });
 
 answers.addEventListener('click', function(e) {
@@ -209,10 +220,9 @@ answers.addEventListener('click', function(e) {
         currentQuiz.incrementScore();
         displayScore();
         result.textContent = "Well done! That's correct."
-        overlay.style.display = "flex";
+        $(".overlay").fadeIn(600);
     } else { 
         result.innerHTML = `Incorrect, the actual answer was <br/>"${currentQuiz.getCurrentQuestion().actualAnswer}"`;
-        overlay.style.display = "flex";
+        $(".overlay").fadeIn(600);
     }
-    answers.style = "pointer-events:none;"
 });

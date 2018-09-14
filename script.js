@@ -178,13 +178,23 @@ fullQuizButton.addEventListener('click',function(e) {
 nextButton.addEventListener('click',function(e) {
     currentQuiz.moveToNextQuestion();
     const finished = currentQuiz.isQuizFinished();
-    console.log(finished);
     if (finished) {
         main.innerHTML = `<h2>You're done!</h2> <div class="final-score">Your Final Score was: 
-        <br/> <span>${currentQuiz.score}/${currentQuiz.questions.length}</span></div>
+        <br/> <span>${currentQuiz.score}/${currentQuiz.questions.length}</span></div><div class="score-message"></div>
         <div class="quiz-type-container"><a class="quiz-type-btn" href="index.html" >Dare to Try Again?</a></div>`;
         
+        const scoreMessage = document.querySelector(".score-message");
+        if (currentQuiz.score >= 20) {
+            scoreMessage.textContent = "Amazing job! You really know your stuff!";
+        } else if (currentQuiz.score >= 12 ) {
+            scoreMessage.textContent = "Not bad, might want to take it again to solidify your knowledge!";
+        } else if (currentQuiz.score >= 6) {
+            scoreMessage.textContent = "You might want to tune into the Oscars next time."
+        } else if (currentQuiz.score < 5) {
+            scoreMessage.textContent = "Don't tell anyone you took this quiz, friend."
+        }
     }
+    
     displayCurrentQuestion();
     result.textContent = "";
     overlay.style.display = "none";
@@ -192,8 +202,8 @@ nextButton.addEventListener('click',function(e) {
 });
 
 answers.addEventListener('click', function(e) {
-    console.log(e.target);
-    console.log(currentQuiz.getCurrentQuestion());
+    //console.log(e.target);
+    //console.log(currentQuiz.getCurrentQuestion());
     let answerValidity = currentQuiz.getCurrentQuestion().isAnswerCorrect(e.target.textContent);
     if (answerValidity) {
         currentQuiz.incrementScore();

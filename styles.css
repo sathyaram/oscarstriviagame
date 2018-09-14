@@ -330,7 +330,7 @@ img {
 /*----------*/
 
 
-@media screen and (max-width:1080px) {
+@media screen and (max-width:1024px) {
     .answers ul li {
         flex: 0 0 23%;
     }
@@ -343,5 +343,19 @@ img {
 
     #result {
         font-size:22px;
+    }
+
+    .question-container .question {
+        font-size:28px;
+    }
+}
+
+@media screen and (max-width:520px) {
+    main {
+        width:90%;
+    }
+
+    .answers ul li {
+        flex: 0 0 48%;
     }
 }
